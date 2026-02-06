@@ -23,6 +23,9 @@ def best_separator(data, labels, ths, th0s):
     best_index = 0
     
     for i in range(m):
+        # : чтобы взять все строки
+        # от i до i + 1
+        # берем столбец как 2d array
         th_i = ths[:, i:i+1]
         th0_i = th0s[0, i]
         current_score = score(data, labels, th_i, th0_i)
@@ -47,12 +50,15 @@ if __name__ == "__main__":
     # Тест score и best_separator
     data = np.array([[1, 2, 3, 4, 5, 3, 2],
                      [3, 4, 5, 1, 2, 2, 2]])
-    labels = np.array([[1, 1, 1, -1, -1, -1, 1]])
+    labels = np.array([[1, 1, 1, -1, -1, 0, 1]])
     
     th1 = np.array([[1], [1]])
     th0_1 = -5
+    th2 = np.array([[-1], [2]])
+    th0_2 = -2
     
     print("Score 1:", score(data, labels, th1, th0_1), "of", data.shape[1])
+    print("Score 2:", score(data, labels, th2, th0_2), "of", data.shape[1])
     
     ths = np.array([[1, -1], [1, 2]])
     th0s = np.array([[-5, -2]])
